@@ -32,24 +32,52 @@ public class Tank {
     @DomainConstraint(type="Integer",mutable=true,optional=false,min=1)
     private int price;
     
+    /*
+     * @effects
+     *      if hp is valid
+     *          return true
+     *      else
+     *          return false 
+     */
     @DOpt(type=OptType.Helper) @AttrRef("hp")
-    public static boolean validateHP( int hp){
+    public static boolean validateHP(int hp){
         return hp>=1;
     }
 
+    /*
+     * @effects
+     *      if damage is valid
+     *          return true
+     *      else
+     *          return false 
+     */
     @DOpt(type=OptType.Helper) @AttrRef("damage")
-    public static boolean validateDamage( int damage){
+    public static boolean validateDamage(int damage){
         return damage>=1;
     }
 
+    /*
+     * @effects
+     *      if armor is valid
+     *          return true
+     *      else
+     *          return false 
+     */
     @DOpt(type=OptType.Helper) @AttrRef("armor")
     public static boolean validateArmor( int armor){
         return armor>=0;
     }
 
+    /*
+     * @effects
+     *      if price is valid
+     *          return true
+     *      else
+     *          return false 
+     */
     @DOpt(type=OptType.Helper) @AttrRef("price")
     public static boolean validatePrice( int price){
-        return price>=0;
+        return price>=1;
     }
 
     /*
@@ -203,5 +231,13 @@ public class Tank {
     @Override
     public String toString(){
         return String.format("Tank: <%d,%d,%d,%d>",this.hitPoint,this.damage,this.armor,this.price);
+    }
+
+    /*
+     * 
+     * 
+     */
+    public boolean repOK(){
+        return (validateHP(hitPoint) && validateDamage(damage) && validateArmor(armor) && validatePrice(price));
     }
 }
