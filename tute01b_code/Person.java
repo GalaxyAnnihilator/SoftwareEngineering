@@ -1,7 +1,7 @@
-package tute01;
+package tute01b_code;
 import utils.*;
 
-/*
+/**
  * @overview: A human being
  * 
  * @attributes
@@ -28,7 +28,7 @@ public class Person {
     @DomainConstraint(type="MobilePhone",mutable=true,optional = true)
     private MobilePhone phone;
 
-    /*
+    /**
      * @effects
      *      if id is valid
      *          return true
@@ -39,7 +39,7 @@ public class Person {
         return id >= 1;
     }
 
-    /*
+    /**
      * @effects
      *      if name is valid
      *          return true
@@ -51,7 +51,7 @@ public class Person {
         return name.length() <= 30;
     }
 
-    /*
+    /**
      * @effects
      *      if phone is valid
      *          return true
@@ -63,7 +63,7 @@ public class Person {
         return phone instanceof MobilePhone;
     }
 
-    /*
+    /**
      * @effects
      *  if i,n,p are valid:
      *      initialize this as <tt> <i,n,p> </tt>
@@ -85,7 +85,7 @@ public class Person {
         this.phone = phone;
     }
 
-    /*
+    /**
      * @effects
      *      return id 
      */
@@ -94,7 +94,7 @@ public class Person {
         return this.id;
     }
 
-    /*
+    /**
      * @effects
      *      return name 
      */
@@ -103,7 +103,7 @@ public class Person {
         return this.name;
     }
     
-    /*
+    /**
      * @effects
      *      return phone 
      */
@@ -112,7 +112,7 @@ public class Person {
         return this.phone;
     }
 
-    /*
+    /**
      * @effects
      *  if id is valid
      *      set this.id = id
@@ -130,7 +130,7 @@ public class Person {
         return false;
     }
 
-    /*
+    /**
      * @effects
      *  if name is valid
      *      set this.name = name
@@ -148,7 +148,7 @@ public class Person {
         return false;
     }
 
-    /*
+    /**
      * @effects
      *  if phone is valid
      *      set this.phone = phone
@@ -171,12 +171,38 @@ public class Person {
         return String.format("Person: <%d,%s,%s>",this.id,this.name,this.phone);
     }
 
-    /*
+    /**
      * @effects
      *  return true if id,name,phone are valid 
      * 
      */
     public boolean repOK(){
         return (validateID(id)&&validateName(name)&&validatePhone(phone));
+    }
+
+    /**
+     * @effects
+     *  return a string to introduce this person 
+     * 
+     */
+
+     public void greet(){
+        System.out.println(String.format("Hi, my name is <%s>, my id is <%d>",this.name,this.id));
+
+    }
+
+    /**
+     * @effects
+     *  attempting to call another person (p)
+     *  if p has a phone (i.e p.phone != null):
+     *      return true
+     *  return false
+     * 
+     */
+    public boolean call(Person p){
+        if (p.phone != null){
+            return true;
+        }
+        return false;
     }
 }

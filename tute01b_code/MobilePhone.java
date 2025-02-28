@@ -1,7 +1,30 @@
-package tute01;
+package tute01b_code;
 import utils.*;
 
-/*
+enum Color {
+    RED('R'), ORANGE('O'), YELLOW('Y'), BLUE('B'), PURPLE('P');
+
+    private final char code;
+
+    Color(char code) {
+        this.code = code;
+    }
+
+    public char getCode() {
+        return code;
+    }
+
+    public static Color fromChar(char c) {
+        for (Color color : Color.values()) {
+            if (color.code == c) {
+                return color;
+            }
+        }
+        throw new IllegalArgumentException("Invalid color code: " + c);
+    }
+}
+
+/**
  * @overview: A communication device
  * 
  * @attributes
@@ -39,7 +62,7 @@ public class MobilePhone {
     @DomainConstraint(type="Boolean", mutable=true, optional=false)
     private Boolean guaranteed;
 
-    /*
+    /**
      * @effects
      *      if manName is valid
      *          return true
@@ -48,10 +71,10 @@ public class MobilePhone {
      */
     @DOpt(type=OptType.Helper) @AttrRef("manName")
     private boolean validateManName(String manName) {
-        return manName != null && manName.length() <= 30;
+        return manName != null && manName.length() <= 30 && manName.trim().contains(" ");
     }
 
-    /*
+    /**
      * @effects
      *      if model is valid
      *          return true
@@ -60,10 +83,10 @@ public class MobilePhone {
      */
     @DOpt(type=OptType.Helper) @AttrRef("model")
     private boolean validateModel(String model) {
-        return model != null && model.length() <= 30;
+        return model != null && model.length() <= 30 && model.matches("M-[A-Z]{3}-/d{3}");
     }
 
-    /*
+    /**
      * @effects
      *      if color is valid
      *          return true
@@ -72,10 +95,10 @@ public class MobilePhone {
      */
     @DOpt(type=OptType.Helper) @AttrRef("color")
     private boolean validateColor(Character color) {
-        return color != null && "ROYBP".indexOf(color) != -1;
+        return Color.fromChar(color) != null;
     }
 
-    /*
+    /**
      * @effects
      *      if year is valid
      *          return true
@@ -87,7 +110,7 @@ public class MobilePhone {
         return year >= 1;
     }
 
-    /*
+    /**
      * @effects
      *      if guaranteed is valid
      *          return true
@@ -99,7 +122,7 @@ public class MobilePhone {
         return guaranteed != null;
     }
 
-    /*
+    /**
      * @effects
      *  if n, m, c, y, g are valid
      *      initialize this as <n,m,c,y,g>
@@ -133,7 +156,7 @@ public class MobilePhone {
         this.guaranteed = guaranteed;
     }
 
-    /*
+    /**
      * @effects
      *      return manName
      */
@@ -143,7 +166,7 @@ public class MobilePhone {
         return manName;
     }
 
-    /*
+    /**
      * @effects
      *      return model
      */
@@ -153,7 +176,7 @@ public class MobilePhone {
         return model;
     }
 
-    /*
+    /**
      * @effects
      *      return color
      */
@@ -163,7 +186,7 @@ public class MobilePhone {
         return color;
     }
 
-    /*
+    /**
      * @effects
      *      return year
      */
@@ -173,7 +196,7 @@ public class MobilePhone {
         return year;
     }
 
-    /*
+    /**
      * @effects
      *      return guaranteed
      */
@@ -183,7 +206,7 @@ public class MobilePhone {
         return guaranteed;
     }
 
-    /*
+    /**
      * @effects
      *  if manName is valid
      *      set this.manName = manName
@@ -201,7 +224,7 @@ public class MobilePhone {
         return false;
     }
 
-    /*
+    /**
      * @effects
      *  if guaranteed is valid
      *      set this.guaranteed = guaranteed
@@ -219,7 +242,7 @@ public class MobilePhone {
         return false;
     }
 
-    /*
+    /**
      * @effects
      *      return true if the object satisfies its constraints
      */
@@ -231,7 +254,7 @@ public class MobilePhone {
                validateGuaranteed(guaranteed);
     }
 
-    /*
+    /**
      * @effects
      *      return string representation of the object
      */
