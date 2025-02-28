@@ -48,7 +48,7 @@ public class Person {
      * 
      */
     private boolean validateName(String name){
-        return name.length() <= 30;
+        return name.length() <= 30 && name.trim().contains(" ");
     }
 
     /**
@@ -200,9 +200,6 @@ public class Person {
      * 
      */
     public boolean call(Person p){
-        if (p.phone != null){
-            return true;
-        }
-        return false;
-    }
+        return p.phone != null;
+    }    
 }

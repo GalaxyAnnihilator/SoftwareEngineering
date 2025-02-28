@@ -3,7 +3,9 @@ package tute01b_code;
 import java.util.HashSet;
 
 /**
- * A class representing a set of even integers.
+ * @overview: A class representing a set of even integers.
+ * @attributes:
+ *  set  HashSet<Integer>
  */
 public class EvenIntSet {
     private HashSet<Integer> set;
@@ -18,7 +20,7 @@ public class EvenIntSet {
 
     /**
      * @effects Adds an even number to the set.
-     * @param num The number to add.
+     * @param num - The number to add.
      * @return true if the number was added, false otherwise.
      */
     public boolean add(int num) {
@@ -30,7 +32,7 @@ public class EvenIntSet {
 
     /**
      * @effects Removes a number from the set.
-     * @param num The number to remove.
+     * @param num - The number to remove.
      * @return true if the number was removed, false otherwise.
      */
     public boolean remove(int num) {

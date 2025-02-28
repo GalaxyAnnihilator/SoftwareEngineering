@@ -71,7 +71,7 @@ public class MobilePhone {
      */
     @DOpt(type=OptType.Helper) @AttrRef("manName")
     private boolean validateManName(String manName) {
-        return manName != null && manName.length() <= 30 && manName.trim().contains(" ");
+        return manName != null && manName.length() <= 30;
     }
 
     /**
