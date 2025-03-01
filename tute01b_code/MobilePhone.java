@@ -35,13 +35,13 @@ enum Color {
  *  guaranteed  Boolean
  * 
  * @object
- *  A typical phone is <n,m,c,y,g> where manName(n),model(m),color(c),year(y),guaranteed(g)
+ *  A typical phone is <n,m,c,y,g> where manName(n), model(m), color(c), year(y), guaranteed(g)
  * 
  * @abstract_properties
  *  mutable(manName) = true /\ optional(manName) = false /\ length(manName) = 30 /\
- *  mutable(model) = false /\ optional(model) = false /\ length(model) = 30 /\
- *  mutable(color) = false /\ optional(color) = false /\ length(color) = 1 /\
- *  mutable(year) = false /\ optional(year) = false /\ min(year) = 1 /\
+ *  mutable(model) = false /\ optional(model) = false /\ length(model) = 9 /\ model.matches("M-Letter{3}-Digits={3}") = true /\
+ *  mutable(color) = false /\ optional(color) = false /\ length(color) = 1 /\ color in {'R','O','Y','B','P'} /\
+ *  mutable(year) = false /\ optional(year) = false /\ min(year) = 1970 /\
  *  mutable(guaranteed) = true /\ optional(guaranteed) = false 
  * 
  */
@@ -83,7 +83,7 @@ public class MobilePhone {
      */
     @DOpt(type=OptType.Helper) @AttrRef("model")
     private boolean validateModel(String model) {
-        return model != null && model.length() <= 30 && model.matches("M-[A-Z]{3}-/d{3}");
+        return model != null && model.length() == 9 && model.matches("M-[A-Z]{3}-/d{3}");
     }
 
     /**
@@ -107,7 +107,7 @@ public class MobilePhone {
      */
     @DOpt(type=OptType.Helper) @AttrRef("year")
     private boolean validateYear(int year) {
-        return year >= 1;
+        return year >= 1970;
     }
 
     /**
